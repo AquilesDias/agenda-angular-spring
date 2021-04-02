@@ -2,7 +2,6 @@ package io.github.aquiles.agenda.model.api.rest;
 
 import io.github.aquiles.agenda.model.entity.Contato;
 import io.github.aquiles.agenda.model.repository.ContatoRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/contatos")
 public class ContatoController {
