@@ -1,6 +1,9 @@
 .full-width{
     width: 50%;
 }
+.half-width{
+    width:50%
+}
 
 .example-spacer {
     flex: 0.5 auto;

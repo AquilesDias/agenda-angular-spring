@@ -1,5 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
+import { CONTENT_ATTR } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -19,5 +20,12 @@ export class ContatoService {
     return this.http.post<Contato>(this.url, contato);
   }
 
+  list() : Observable<Contato[]>{
+     return this.http.get<any>(this.url);
+  }
+
+  favorite(contato : Contato): Observable<any>{
+    return this.http.patch(`${this.url}${contato.id}/favorito`, null);
+  }
 }
  

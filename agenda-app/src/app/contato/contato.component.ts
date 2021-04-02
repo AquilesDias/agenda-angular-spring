@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContatoService } from '../contato.service';
 import { Contato } from './contato';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Identifiers } from '@angular/compiler';
 
 @Component({
   selector: 'app-contato',
@@ -13,6 +14,7 @@ export class ContatoComponent implements OnInit {
 
   formulario : FormGroup
   contatos : Contato[] = [];
+  colunas : ['id', 'nome', 'email', 'favorito'];
 
   constructor(
     private service : ContatoService,
@@ -20,10 +22,28 @@ export class ContatoComponent implements OnInit {
   ) {}     
 
   ngOnInit(): void {
-     this.formulario = this.fb.group({
-       nome:['', Validators.required],
-       email:['', [Validators.required,Validators.email]]
-     });
+     this.montarFormulario();
+     this.listarContatos(); 
+  }
+
+  montarFormulario(){
+    this.formulario = this.fb.group({
+      nome:['', Validators.required],
+      email:['', [Validators.required,Validators.email]]
+    });
+  }
+
+
+  favoritar(contato : Contato){
+    this.service.favorite(contato).subscribe(response => {
+      contato.favorito = !contato.favorito;
+    });
+  }
+
+  listarContatos(){
+    this.service.list().subscribe(response => {
+      this.contatos = response;
+    })
   }
 
   submit(){
@@ -32,8 +52,8 @@ export class ContatoComponent implements OnInit {
     const contato : Contato = new Contato(formValue.nome, formValue.email);
     
     this.service.save(contato).subscribe( resposta =>{
-      this.contatos.push(resposta);   
-      console.log(this.contatos)
+      let lista : Contato[] = [...this.contatos, resposta];
+      this.contatos = lista;
     });
   }
  
