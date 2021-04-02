@@ -19,6 +19,7 @@
 
                     <thead>
                         <tr>
+                            <th>Identificação</th>
                             <th>ID</th>
                             <th>Nome</th>
                             <th>E-mail</th>
@@ -27,6 +28,21 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let cliente of contatos ">
+
+                            <td> 
+                                <div *ngIf="cliente.foto">
+                                    <img style="border-radius: 50px;"
+                                    width="50"
+                                    height="50"
+                                    src="data:image/png;base64,{{cliente.foto}}" >
+                                </div>
+                                
+                                <div *ngIf="!cliente.foto">
+                                    <input type="file" name="foto"
+                                    (change)="uploadFoto($event, cliente)"/> 
+                                </div>
+                            </td>
+
                             <td>{{ cliente.id }}</td>
                             <td>{{ cliente.nome }}</td>
                             <td>{{ cliente.email }}</td>
