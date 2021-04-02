@@ -31,7 +31,8 @@
 
                             <td> 
                                 <div *ngIf="cliente.foto">
-                                    <img style="border-radius: 50px;"
+                                    <img (click)="visualizarContato(cliente)"
+                                    style="border-radius: 50px;"
                                     width="50"
                                     height="50"
                                     src="data:image/png;base64,{{cliente.foto}}" >
