@@ -36,6 +36,6 @@ export class ContatoComponent implements OnInit {
       console.log(this.contatos)
     });
   }
-
+ 
 
 }

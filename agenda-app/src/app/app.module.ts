@@ -3,8 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { ReactiveFormsModule } from '@angular/forms'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatIconModule } from '@angular/material/icon'
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +29,10 @@ import { HttpClientModule} from '@angular/common/http'
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatTabsModule,
+    MatCardModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule

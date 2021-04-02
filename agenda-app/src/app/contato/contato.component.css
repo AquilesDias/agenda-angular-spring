@@ -1,3 +1,21 @@
 .full-width{
     width: 50%;
 }
+
+.example-spacer {
+    flex: 0.5 auto;
+  }
+
+.footer{
+    position: fixed;
+    bottom: 0;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer span{
+    font-size: 0.99rem;
+    font-weight: 300;
+
+}
