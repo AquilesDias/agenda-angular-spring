@@ -4,6 +4,8 @@ import io.github.aquiles.agenda.model.entity.Contato;
 import io.github.aquiles.agenda.model.repository.ContatoRepository;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +35,13 @@ public class ContatoController {
          repository.deleteById(id);
     }
 
-    @GetMapping("/")
-    public List<Contato> list(){
-        return repository.findAll();
+    @GetMapping
+    public Page<Contato> list(
+            @RequestParam(value = "page", defaultValue = "0") Integer pagina,
+            @RequestParam(value = "size", defaultValue ="10") Integer tamanhoPagina){
+
+        PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina);
+        return repository.findAll(pageRequest);
     }
 
     @PatchMapping("/{id}/favorito")

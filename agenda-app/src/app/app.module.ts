@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule} from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +37,7 @@ import { ContatoDetalheComponent } from './contato-detalhe/contato-detalhe.compo
     MatTableModule,
     MatTabsModule,
     MatCardModule,
+    MatPaginatorModule,
     MatDialogModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
