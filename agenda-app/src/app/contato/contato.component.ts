@@ -5,6 +5,7 @@ import { ContatoDetalheComponent} from '../contato-detalhe/contato-detalhe.compo
 
 import { MatDialog} from '@angular/material/dialog'
 import { PageEvent } from '@angular/material/paginator' 
+import { MatSnackBar} from '@angular/material/snack-bar'
 
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms'
 
@@ -29,7 +30,8 @@ export class ContatoComponent implements OnInit {
   constructor(
     private service : ContatoService,
     private fb : FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snakBar: MatSnackBar
   ) {}     
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class ContatoComponent implements OnInit {
     });
   }
 
-  listarContatos(pagina=1, tamanho=1){
+  listarContatos(pagina=0, tamanho=10){
     this.service.list(pagina, tamanho).subscribe(response => {
       this.contatos = response.content;
       this.totalElementos = response.totalElements;
@@ -65,8 +67,12 @@ export class ContatoComponent implements OnInit {
     const contato : Contato = new Contato(formValue.nome, formValue.email);
     
     this.service.save(contato).subscribe( resposta =>{
-      let lista : Contato[] = [...this.contatos, resposta];
-      this.contatos = lista;
+     this.listarContatos();
+      this.formulario.reset;
+      this.snakBar.open('Contato foi adicionado!', 'Ok!', {
+        duration: 3000
+      });
+      this.formulario.reset();
     });
   }
  
